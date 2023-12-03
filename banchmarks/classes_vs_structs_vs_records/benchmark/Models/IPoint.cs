@@ -1,4 +1,4 @@
-﻿public interface IPoint : IWeight
+﻿public interface IPoint //: IWeight
 {
     int X { init; get; }
     int Y { init; get; }

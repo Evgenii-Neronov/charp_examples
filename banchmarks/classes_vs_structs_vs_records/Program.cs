@@ -9,20 +9,14 @@ class Program
 
     static void StartBenchmark()
     {
-        Console.WriteLine($"### START {nameof(MyStructPoint)} ###");
-        var summary = BenchmarkRunner.Run<BenchmarkExample<MyStructPoint>>();
-        Console.WriteLine(summary);
+        var summary1 = BenchmarkRunner.Run<BenchmarkExample<MyStructPoint>>();
+        var summary2 = BenchmarkRunner.Run<BenchmarkExample<MyClassPoint>>();
+        var summary3 = BenchmarkRunner.Run<BenchmarkExample<MyRecordClassPoint>>();
+        var summary4 = BenchmarkRunner.Run<BenchmarkExample<MyRecordStructPoint>>();
 
-        Console.WriteLine($"### START {nameof(MyClassPoint)} ###");
-        summary = BenchmarkRunner.Run<BenchmarkExample<MyClassPoint>>();
-        Console.WriteLine(summary);
-
-        Console.WriteLine($"### START {nameof(MyRecordClassPoint)} ###");
-        summary = BenchmarkRunner.Run<BenchmarkExample<MyRecordClassPoint>>();
-        Console.WriteLine(summary);
-
-        Console.WriteLine($"### START {nameof(MyRecordStructPoint)} ###");
-        summary = BenchmarkRunner.Run<BenchmarkExample<MyRecordStructPoint>>();
-        Console.WriteLine(summary);
+        summary1.PrintSummary(nameof(MyStructPoint));
+        summary2.PrintSummary(nameof(MyClassPoint));
+        summary3.PrintSummary(nameof(MyRecordClassPoint));
+        summary4.PrintSummary(nameof(MyRecordStructPoint));
     }
 }

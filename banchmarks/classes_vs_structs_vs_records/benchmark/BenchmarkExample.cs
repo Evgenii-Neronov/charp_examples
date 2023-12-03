@@ -5,18 +5,32 @@ public partial class BenchmarkExample<T> where T : IPoint, new()
 {
     public const int Length = 10000;
 
-    static T[] Array = new T[Length];
+    private T[] _array = new T[Length];
 
+    public BenchmarkExample()
+    {
+        var rnd = new Random();
+
+        for (int i = 0; i < Length; i++)
+        {
+            _array[i] = new T()
+            {
+
+                X = rnd.Next(1000),
+                Y = rnd.Next(1000),
+            };
+        }
+    }
 
     [Benchmark]
     public int Sum()
     {
-        return Array.Sum(x => x.X);
+        return _array.Sum(x => x.X);
     }
 
     [Benchmark]
     public T[] Sort()
     {
-        return Array.OrderBy(x=>x.X).ToArray();
+        return _array.OrderBy(x=>x.X).ToArray();
     }
 }
